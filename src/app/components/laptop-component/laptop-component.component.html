@@ -1,0 +1,172 @@
+
+
+                  <!-- LAPTOP PROJECT BY CODING HUB -->
+
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Laptop Data Form</title>
+                     
+                    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+                    <style>
+                      body {
+                        background-image: url('https://img.freepik.com/premium-photo/blue-wall-with-white-arrow-pointing-right_1034303-244337.jpg?ga=GA1.2.2013731574.1674796066&semt=ais_hybrid');
+                        height: 100vh;
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+                        
+                      }
+                      .container {
+                        background-color: rgba(255, 248, 240, 0.9); /* Light beige with transparency */
+                        border-radius: 10px;
+                        padding: 20px;
+                        
+
+                      }
+                      .btn-custom {
+                        width: 100%; /* Ensure buttons take full width of their column */
+                      }
+                    </style>
+                  </head>
+                  
+                  <body>
+                  
+                  <div class="container ">
+                  
+                    <form #useform="ngForm" (ngSubmit)="alertfun()" class="border p-4 rounded shadow-sm ">
+                  
+                           <h3 class="text-center mb-4">Laptop Data Form</h3>
+                  
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="id">Laptop ID:</label>
+                            <input type="number" id="id" class="form-control" ngModel name="id" placeholder="Enter Laptop ID" />
+                          </div>
+                  
+                              <div class="form-group col-md-6">
+                                <label for="brand">Brand Name:</label>
+                                <input type="text" id="brand" class="form-control" ngModel name="brand" placeholder="Enter Brand Name" />
+                              </div>
+                            </div>
+                  
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="price">Price:</label>
+                                    <input type="text" id="price" class="form-control" ngModel name="price" placeholder="Enter Price" />
+                                  </div>
+                                </div>
+                  
+                      <!-- Buttons within a grid system -->
+                      <div class="form-row">
+                  
+                            <div class="col-12 col-sm-6 col-md-4 mb-2">
+                              <button type="button" class="btn btn-danger btn-custom" (click)="delete(useform)">DELETE</button>
+                            </div>
+                  
+                            <div class="col-12 col-sm-6 col-md-4 mb-2">
+                              <button type="button" class="btn btn-info btn-custom" (click)="getData()">GET DATA</button>
+                            </div>
+                  
+                            <div class="col-12 col-sm-6 col-md-4 mb-2">
+                              <button type="button" class="btn btn-warning btn-custom" (click)="updateRecord(useform)">UPDATE</button>
+                            </div>
+                  
+                            <div class="col-12 col-sm-6 col-md-4 mb-2">
+                              <button type="button" class="btn btn-success btn-custom" (click)="InsertData(useform)">Insert</button>
+                            </div>
+                  
+                            <div class="col-12 col-sm-6 col-md-4 mb-2">
+                              <button type="button" class="btn btn-primary btn-custom" (click)="searching_price(useform)">SEARCHBYPRICE</button>
+                            </div>
+                  
+                            <div class="col-12 col-sm-6 col-md-4 mb-2">
+                              <button type="button" class="btn btn-secondary btn-custom" (click)="searching_data(useform)">SEARCHByBrand</button>
+                            </div>
+                  
+                      </div>
+                  
+                  
+                      <div class="text-center mt-4">
+                        <input type="submit" class="btn btn-primary" value="Submit Data" />
+                      </div>
+                  
+                  
+                    </form>
+                  
+                    <!-- GET THE ALL THE DATA TABLE -->
+                  
+                        <table *ngIf="showTable" class="table table-bordered border-primary mt-4">
+                  
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">BRAND</th>
+                              <th scope="col">PRICE</th>
+                            </tr>
+                          </thead>
+                  
+                          <tbody>
+                            <tr *ngFor="let i of data3">
+                              <td>{{i.id}}</td>
+                              <td>{{i.brand}}</td>
+                              <td>{{i.price}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  
+                    <!-- SEARCHING TABLE RELATED TO THE BRAND -->
+                  
+                                        <table *ngIf="showTable12" class="table table-bordered border-primary mt-4">
+                  
+                                          <thead class="thead-dark">
+                                            <tr>
+                                              <th scope="col">ID</th>
+                                              <th scope="col">BRAND</th>
+                                              <th scope="col">PRICE</th>
+                                            </tr>
+                                          </thead>
+                  
+                                          <tbody>
+                                            <tr *ngFor="let i of data4">
+                                              <td>{{i.id}}</td>
+                                              <td>{{i.brand}}</td>
+                                              <td>{{i.price}}</td>
+                                            </tr>
+                                          </tbody>
+                  
+                                        </table>
+                  
+                    <!-- SEARCHING TABLE RELATED TO THE PRICE -->
+                    <table *ngIf="showTable123" class="table table-bordered border-primary mt-4">
+                  
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">BRAND</th>
+                          <th scope="col">PRICE</th>
+                        </tr>
+                      </thead>
+                  
+                      <tbody>
+                        <tr *ngFor="let i of data5">
+                          <td>{{i.id}}</td>
+                          <td>{{i.brand}}</td>
+                          <td>{{i.price}}</td>
+                        </tr>
+                      </tbody>
+                  
+                    </table>
+                  
+                  </div>
+                  
+                  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                  
+                  </body>
+                  </html>
+                  
